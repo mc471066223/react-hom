@@ -1,0 +1,152 @@
+.swiper{
+    min-height: 212px;
+    position: relative;
+    .search-box {
+        position: absolute;
+        top: 25px;
+        width: 100%;
+        padding: 0 10px;
+    
+        // 左侧白色区域
+        .search {
+			flex: 1;
+			height: 34px;
+			margin: 0 10px;
+			padding: 5px 5px 5px 8px;
+			border-radius: 3px;
+			background-color: #fff;
+		
+			// 位置
+			.location {
+				.icon-arrow {
+				margin-left: 2px;
+				font-size: 12px;
+				color: #7f7f80;
+				}
+			}
+		
+			// 搜索表单
+			.form {
+				border-left: solid 1px #e5e5e5;
+				margin-left: 12px;
+				line-height: 16px;
+		
+				.icon-seach {
+					vertical-align: middle;
+					padding: 0 2px 0 12px;
+					color: #9c9fa1;
+					font-size: 15px;
+					}
+		
+				.text {
+					padding-left: 4px;
+					font-size: 13px;
+					color: #9c9fa1;
+					}
+				}
+			}
+		
+			// 右侧地图图标
+			.icon-map {
+			font-size: 25px;
+			color: #fff;
+		}
+	}
+}
+
+.nav{
+    .am-flexbox-item{
+        text-align: center;
+        padding: 10px 0;
+        img{
+            width: 48px;
+        }
+        h2{
+            font-size: 13px;
+            font-weight: normal;
+            margin-top: 7px;
+        }
+    }
+}
+
+.groups{
+    padding:15px 10px 10px;
+    background-color: #f7f7f7;
+    .title{
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        margin:0 0 15px 0;
+        a{
+            font-size: 14px;
+            color: #89898c;
+            font-weight: 400;
+        }
+    }
+    .group-item{
+        height: 75px;
+        .desc{
+            p{
+                font-size: 13px;
+                color: #232323;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            span{
+                font-size: 12px;
+                color: #89898c;
+            }
+        }
+        img{
+            width: 55px;
+        }
+    }
+    .am-grid .am-flexbox{
+        background-color: inherit;
+        .am-flexbox-item .am-grid-item-content{
+            padding: 0 0 10px 0;
+        }
+        
+    }
+
+    .am-flexbox-align-stretch{
+        &:first-child{
+            margin-bottom: 10px;
+        }
+        .am-grid-item{
+            background-color: #fff;
+            &:first-child{
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+.news{
+    margin-top: 15px;
+    .title{
+        font-size: 14px;
+    }
+    .news-item{
+        padding:15px 0;
+        border-bottom: 1px solid #e5e5e5;
+        &:last-child{
+            border-bottom: 0;
+        }
+        
+        img{
+            width: 150px;
+        }
+        .news-item-desc{
+            margin-left: 10px;
+            .news-item-title{
+                font-size: 14px;
+                font-weight: bold;
+            }
+            span{
+                color: #89898c;
+            }
+        }
+        
+    }
+}
