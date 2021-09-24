@@ -38,12 +38,17 @@ const navState = [
     }
 ]
 
+// navigator.geolocation.getCurrentPosition(position => {
+//     console.log(position)
+// })
+
 class Index extends React.Component {
     state = {
         swipers: [],
         swiperLoaded: false,
         groups: [],
-        news: []
+        news: [],
+        curCityName: '上海'
     }
     async getSwipers() {
         const res = await axios.get('http://49.232.149.129:8080/home/swiper');
@@ -83,6 +88,17 @@ class Index extends React.Component {
         this.getSwipers()
         this.getGroups()
         this.getNews()
+
+        // 通过百度地图API定位当前所在位置
+        const curCity = new window.BMapGL.LocalCity();
+        curCity.get(async res => {
+            console.log(res)
+            const result = await axios.get(`http://49.232.149.129:8080/area/info?name=${res.name}`)
+            console.log(result)
+            this.setState({
+                curCityName: result.data.body.label
+            })
+        })
     }
 
     renderSwiper = () => {
@@ -104,7 +120,7 @@ class Index extends React.Component {
     renderNavs = () => {
         return navState.map(item => (
             <Flex.Item key={item.id} onClick={() => { this.props.history.push(item.path) }}>
-                <img src={item.img} />
+                <img src={item.img} alt="" />
                 <h2>{item.title}</h2>
             </Flex.Item>
         ))
@@ -113,7 +129,7 @@ class Index extends React.Component {
     renderNews = () => {
         return this.state.news.map(item => (
             <Flex key={item.id} className="news-item" align="stretch">
-                <img src={`http://49.232.149.129:8080${item.imgSrc}`} />
+                <img src={`http://49.232.149.129:8080${item.imgSrc}`} alt="" />
                 <Flex className="news-item-desc" direction="column" align="stretch" justify="between">
                     <p className="news-item-title">{item.title}</p>
                     <Flex justify="between">
@@ -146,7 +162,7 @@ class Index extends React.Component {
                     <Flex className="search-box">
                         <Flex className="search">
                             <div className="location" onClick={() => this.props.history.push('/city_list')}>
-                                <span className="name">上海</span>
+                                <span className="name">{this.state.curCityName}</span>
                                 <i className="iconfont icon-arrow" />
                             </div>
 
@@ -174,7 +190,7 @@ class Index extends React.Component {
                                 <p>{item.title}</p>
                                 <span>{item.desc}</span>
                             </div>
-                            <img src={`http://49.232.149.129:8080${item.imgSrc}`} />
+                            <img src={`http://49.232.149.129:8080${item.imgSrc}`} alt="" />
                         </Flex>
                     )} />
                 </div>
