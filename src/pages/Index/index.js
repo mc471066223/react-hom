@@ -9,6 +9,8 @@ import Nav2 from '../../assets/images/nav-2.png'
 import Nav3 from '../../assets/images/nav-3.png'
 import Nav4 from '../../assets/images/nav-4.png'
 
+import { getCurrentCity } from '../../utils';
+
 import './index.scss'
 
 const navState = [
@@ -84,20 +86,15 @@ class Index extends React.Component {
         console.log('最新资讯数据：', this.state.news)
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.getSwipers()
         this.getGroups()
         this.getNews()
 
         // 通过百度地图API定位当前所在位置
-        const curCity = new window.BMapGL.LocalCity();
-        curCity.get(async res => {
-            console.log(res)
-            const result = await axios.get(`http://49.232.149.129:8080/area/info?name=${res.name}`)
-            console.log(result)
-            this.setState({
-                curCityName: result.data.body.label
-            })
+        const curCity = await getCurrentCity();
+        this.setState({
+            curCityName: curCity.label
         })
     }
 
